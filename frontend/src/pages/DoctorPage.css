@@ -1,0 +1,84 @@
+.doctor-page {
+    min-height: calc(100vh - 64px);
+    display: grid;
+    place-items: center;
+    padding: 40px 24px;
+    background: var(--bg-page);
+}
+
+.login-card {
+    width: 100%;
+    max-width: 420px;
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.login-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 12px;
+    background: var(--success-light);
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    font-size: 1.6rem;
+}
+
+.al-error {
+    background: var(--danger-light);
+    color: var(--danger);
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    margin-bottom: 8px;
+}
+
+.forgot-password-link {
+    background: none;
+    border: none;
+    font-size: 0.85rem;
+    color: var(--primary);
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+}
+
+.forgot-password-link:hover {
+    color: var(--primary-dark);
+}
+
+.reset-section {
+    margin-top: 16px;
+    padding: 16px;
+    background: var(--primary-light);
+    border-radius: var(--radius-md);
+}
+
+.reset-msg {
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+}
+
+.reset-msg.success {
+    background: var(--success-light);
+    color: var(--success);
+}
+
+.reset-msg.error {
+    background: var(--danger-light);
+    color: var(--danger);
+}
+
+.info-banner {
+    background: var(--primary-light);
+    color: var(--primary);
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+}

@@ -1,0 +1,15 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[redirects]]
+  # Redirect all API requests to the deployed backend URL (optional, if frontend proxies)
+  # from = "/api/*"
+  # to = "https://aarogyalekhaa-backend.onrender.com/api/:splat"
+  # status = 200
+
+[[redirects]]
+  # Redirect all traffic to index.html for React Router to handle
+  from = "/*"
+  to = "/index.html"
+  status = 200

@@ -1,0 +1,24 @@
+# Hospital Coordination System — Python dependencies
+# Versions are pinned for reproducibility and mutual compatibility.
+#
+# Compatibility matrix (all tested together):
+#   fastapi  0.111.x  →  requires starlette ~0.37, pydantic >=2.0
+#   pydantic 2.7.x    →  used by fastapi for request/response validation
+#   starlette 0.37.x  →  ASGI toolkit used internally by fastapi
+#   uvicorn  0.29.x   →  ASGI server; [standard] pulls in httptools & watchfiles
+
+fastapi==0.111.1
+pydantic==2.7.4
+starlette==0.37.2
+uvicorn[standard]==0.29.0
+gunicorn>=21.2.0
+
+# Firebase
+firebase-admin>=6.5.0
+
+# Auth & Security
+bcrypt>=4.1.0
+PyJWT>=2.8.0
+
+# Config
+python-dotenv>=1.0.0

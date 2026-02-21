@@ -1,0 +1,27 @@
+services:
+  # Base web service configuration
+  - type: web
+    name: aarogyalekhaa-backend
+    env: python
+    region: oregon # Or your preferred Render region
+    # Render requires deploying from a specific directory since our backend is in a folder
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: bash start.sh
+    # Define the environment variables that must be provided in the Render dashboard
+    envVars:
+      - key: PORT
+        value: "10000"
+      - key: PYTHON_VERSION
+        value: "3.11.9" # Ensure Render uses the same Python version as local
+      # Add placeholders for variables that should be set in the Render Dashboard
+      - key: JWT_SECRET
+        sync: false
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        sync: false
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASSWORD
+        sync: false

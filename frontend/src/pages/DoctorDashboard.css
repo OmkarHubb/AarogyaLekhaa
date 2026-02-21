@@ -1,0 +1,93 @@
+/* ============================================================
+   DoctorDashboard.css
+   ============================================================ */
+
+.dd-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 28px;
+}
+
+/* Profile Card */
+.dd-profile {
+    margin-bottom: 24px;
+}
+
+.dd-profile-grid {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.dd-avatar {
+    width: 64px;
+    height: 64px;
+    background: var(--success-light);
+    border-radius: 16px;
+    display: grid;
+    place-items: center;
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.dd-profile-info {
+    flex: 1;
+    min-width: 160px;
+}
+
+.dd-profile-info h3 {
+    margin: 0 0 2px;
+}
+
+.dd-stats-row {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 12px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+}
+
+.dd-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.dd-stat-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-weight: 600;
+}
+
+.dd-stat-value {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Sections */
+.dd-section {
+    margin-bottom: 24px;
+}
+
+@media (max-width: 768px) {
+    .dd-header {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .dd-profile-grid {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .dd-stats-row {
+        justify-content: center;
+    }
+}
