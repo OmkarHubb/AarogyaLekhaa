@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from datetime import datetime, timezone
 
@@ -12,22 +13,55 @@ from services.stress_service import calculate_stress_index
 from services.recommendation_service import generate_recommendations
 from services.dashboard_service import get_admin_dashboard, get_doctor_dashboard
 
+
 app = FastAPI(title="AarogyaLekhaa Backend")
 
+# -----------------------------
+# CORS CONFIGURATION
+# -----------------------------
+origins = [
+    "https://aarogya-lekhaa-zhoy.vercel.app",
+    "http://localhost:5173",
+    "http://localhost:3000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# -----------------------------
+# REQUEST MODEL
+# -----------------------------
 class PatientRequest(BaseModel):
     patient_name: str
     age: int = Field(..., gt=0)
     symptoms: str
     department: str
 
+
+# -----------------------------
+# ROUTES
+# -----------------------------
 @app.post("/appointments")
 def create_appointment(request: PatientRequest):
+
     severity_score = calculate_severity(request.age, request.symptoms)
     emergency = compute_emergency(severity_score)
+
     slot = allocate_slot(request.department, emergency)
 
     if not slot:
-        return JSONResponse(status_code=200, content={"status": "rejected", "reason": "No available doctor"})
+        return JSONResponse(
+            status_code=200,
+            content={
+                "status": "rejected",
+                "reason": "No available doctor"
+            }
+        )
 
     now_iso = datetime.now(timezone.utc).isoformat()
 
@@ -43,15 +77,18 @@ def create_appointment(request: PatientRequest):
     }
 
     db.collection("appointments").add(appointment)
+
     update_bed_occupancy(emergency)
     calculate_stress_index()
     generate_recommendations()
 
     return appointment
 
+
 @app.get("/admin-dashboard")
 def admin_dashboard():
     return get_admin_dashboard()
+
 
 @app.get("/doctor-dashboard/{doctor_id}")
 def doctor_dashboard(doctor_id: str):
